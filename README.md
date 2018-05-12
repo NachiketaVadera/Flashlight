@@ -4,6 +4,17 @@
 
 The base of this project is LED provided along with the Camera in a typical Android smart phone. After seeing that Play Store has a number of apps that ask for unnecessary permissions, I decided to create an app that toggles the LED without asking for any type of permission. This app also implements a service that detects when the device is shook (used to toggle the flashlight). 
 
+## Downloads
+
+Latest apk:
+[Flashlight.apk](https://github.com/NachiketaVadera/Flashlight/releases/download/v1.0/android.nachiketa.flashlight-1.0.apk)
+
+Source Code (zip):
+[Flashlight.zip](https://github.com/NachiketaVadera/Flashlight/archive/v1.0.zip)
+
+Source Code (tar.gz):
+[Flashlight.tar.gz](https://github.com/NachiketaVadera/Flashlight/archive/v1.0.tar.gz)
+
 ## Code
 
 The majority of the code is written in Java and is simple. For detecting shake motion:
