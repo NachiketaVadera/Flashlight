@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 public class MainActivity extends AppCompatActivity {
 
     RelativeLayout relativeLayout = null;
+    boolean isFlashlightOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

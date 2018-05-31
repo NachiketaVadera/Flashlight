@@ -17,7 +17,7 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
 
     SensorManager sensorManager = null;
     Vibrator vibrator = null;
-    public static final float SHAKE_THRESHOLD = 5.25f;
+    public static final float SHAKE_THRESHOLD = 10.25f;
     public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     private long lastShakeTime = 0;
     private boolean isFlashlightOn = false;
