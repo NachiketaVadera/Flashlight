@@ -7,13 +7,13 @@ The base of this project is LED provided along with the Camera in a typical Andr
 ## Downloads
 
 Latest apk:
-[Flashlight.apk](https://github.com/NachiketaVadera/Flashlight/releases/download/v1.1/nachiketaVadera-Flashlight-v1.2.apk)
+[Flashlight.apk](https://github.com/NachiketaVadera/Flashlight/releases/download/1.3/flashlight-v1.3.apk)
 
 Source Code (zip):
-[Flashlight.zip](https://github.com/NachiketaVadera/Flashlight/archive/v1.0.zip)
+[Flashlight.zip](https://github.com/NachiketaVadera/Flashlight/archive/1.3.zip)
 
 Source Code (tar.gz):
-[Flashlight.tar.gz](https://github.com/NachiketaVadera/Flashlight/archive/v1.0.tar.gz)
+[Flashlight.tar.gz](https://github.com/NachiketaVadera/Flashlight/archive/1.3.tar.gz)
 
 ## Code
 
