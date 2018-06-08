@@ -23,6 +23,8 @@
             android:name=".FlashlightShakeToggle"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

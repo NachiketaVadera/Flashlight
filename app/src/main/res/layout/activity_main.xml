@@ -16,13 +16,13 @@
         android:fontFamily="monospace"
         android:onClick="toggle"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#000000"
+        android:text="@string/button_text_Settings"
+        android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Developed by: Nachiketa Vadera"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:onClick="goToSettings"/>
 
 </RelativeLayout>

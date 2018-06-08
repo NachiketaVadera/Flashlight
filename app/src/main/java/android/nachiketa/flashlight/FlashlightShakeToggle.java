@@ -17,7 +17,6 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
 
     SensorManager sensorManager = null;
     Vibrator vibrator = null;
-    public static final float SHAKE_THRESHOLD = 10.25f;
     public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     private long lastShakeTime = 0;
     private boolean isFlashlightOn = false;
@@ -44,6 +43,15 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Float shakeThreshold;
+        try {
+            shakeThreshold = Float.parseFloat(AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt"));
+        } catch (Exception ex) {
+            AndroidReadWrite.saveFile(getApplicationContext(), "settings.txt", 10.2f + "");
+            shakeThreshold = 10.2f;
+            ex.getMessage();
+        }
+
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long curTime = System.currentTimeMillis();
             if ((curTime - lastShakeTime) > MIN_TIME_BETWEEN_SHAKES) {
@@ -56,7 +64,7 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
                         Math.pow(y, 2) +
                         Math.pow(z, 2)) - SensorManager.GRAVITY_EARTH;
 
-                if (acceleration > SHAKE_THRESHOLD) {
+                if (acceleration > shakeThreshold) {
                     lastShakeTime = curTime;
                     if (!isFlashlightOn) {
                         torchToggle("on");
