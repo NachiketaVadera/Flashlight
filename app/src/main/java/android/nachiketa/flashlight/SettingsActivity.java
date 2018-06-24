@@ -24,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSee
         String progress = AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt");
 
         seekBar = (SeekBar) findViewById(R.id.skbThreshold);
-        seekBar.setProgress(Integer.parseInt(progress));
+        seekBar.setProgress((int) Float.parseFloat(Objects.requireNonNull(progress).replace("f","")));
         seekBar.setOnSeekBarChangeListener(this);
 
         textView = (TextView) findViewById(R.id.tvThresholdValue);
