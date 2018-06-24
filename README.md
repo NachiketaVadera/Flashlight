@@ -4,6 +4,8 @@
 
 The base of this project is LED provided along with the Camera in a typical Android smart phone. After seeing that Play Store has a number of apps that ask for unnecessary permissions, I decided to create an app that toggles the LED without asking for any type of permission. This app also implements a service that detects when the device is shook (used to toggle the flashlight). 
 
+As of June 24th of 2018, Flashlight is licensed under Apache License version 2.0.
+
 ## Downloads
 
 Latest apk:
