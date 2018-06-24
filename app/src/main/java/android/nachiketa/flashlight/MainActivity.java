@@ -7,7 +7,6 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +15,17 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO : Optimize code
+
     RelativeLayout relativeLayout = null;
-    boolean isFlashlightOn = false;
+    boolean isTorchOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(this, FlashlightShakeToggle.class));
 
         relativeLayout = (RelativeLayout) findViewById(R.id.relLayMain);
     }
@@ -37,12 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public void toggle(View view) {
         Button button = (Button) view;
         if (button.getText().equals("Switch On")) {
-            relativeLayout.setBackgroundColor(Color.WHITE);
             button.setText("Switch Off");
             torchToggle("on");
         } else {
             button.setText("Switch On");
-            relativeLayout.setBackgroundColor(Color.BLACK);
             torchToggle("off");
         }
     }
@@ -58,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 if (camManager != null) {
                     if (command.equals("on")) {
                         camManager.setTorchMode(cameraId, true);   // Turn ON
+                        isTorchOn = true;
+                        changeBackground();
                     } else {
                         camManager.setTorchMode(cameraId, false);  // Turn OFF
+                        isTorchOn = false;
+                        changeBackground();
                     }
                 }
             } catch (CameraAccessException e) {
@@ -68,10 +73,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void changeBackground() {
+        if (isTorchOn) {
+            relativeLayout.setBackgroundColor(Color.WHITE);
+        } else {
+            relativeLayout.setBackgroundColor(Color.BLACK);
+        }
+    }
+
+
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         startService(new Intent(this, FlashlightShakeToggle.class));
+        super.onDestroy();
     }
 
     public void goToSettings(View view) {

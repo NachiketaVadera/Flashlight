@@ -3,4 +3,7 @@
     <string name="tv_text_title_ShakeThreshold">Shake Threshold</string>
     <string name="button_text_Save">Save</string>
     <string name="button_text_Settings">Settings</string>
+    <string name="tv_text_heading_Settings">Settings</string>
+    <string name="tv_text_explaination_st">How hard to shake to switch flashlight on?</string>
+    <string name="iv_contentDisc">Gif Image to show shake motion</string>
 </resources>

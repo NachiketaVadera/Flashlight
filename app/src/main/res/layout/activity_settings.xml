@@ -9,18 +9,53 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/tv_text_heading_Settings"
+        android:textAlignment="center"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/tv_text_title_ShakeThreshold"
         android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_text_explaination_st"
+        android:textSize="15sp" />
 
     <SeekBar
         android:id="@+id/skbThreshold"
         android:layout_width="match_parent"
+        style="@style/Base.Widget.AppCompat.SeekBar"
         android:layout_height="wrap_content" />
 
-    <Button
+    <TextView
+        android:id="@+id/tvThresholdValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_text_Save"
-        android:onClick="saveSettings"/>
+        android:textSize="25sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivShakeGif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/iv_contentDisc" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#000000"
+            android:onClick="saveSettings"
+            android:text="@string/button_text_Save"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
 
 </LinearLayout>
