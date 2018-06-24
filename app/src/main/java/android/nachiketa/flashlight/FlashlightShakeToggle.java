@@ -12,14 +12,12 @@ import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.util.Log;
 
 public class FlashlightShakeToggle extends Service implements SensorEventListener {
 
-    public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     SensorManager sensorManager = null;
     Vibrator vibrator = null;
-    Float shakeThreshold = null;
+    public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     private long lastShakeTime = 0;
     private boolean isFlashlightOn = false;
 
@@ -45,9 +43,16 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Float shakeThreshold;
+        try {
+            shakeThreshold = Float.parseFloat(AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt"));
+        } catch (Exception ex) {
+            AndroidReadWrite.saveFile(getApplicationContext(), "settings.txt", 10.2f + "");
+            shakeThreshold = 10.2f;
+            ex.getMessage();
+        }
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-
             long curTime = System.currentTimeMillis();
             if ((curTime - lastShakeTime) > MIN_TIME_BETWEEN_SHAKES) {
 
@@ -59,27 +64,14 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
                         Math.pow(y, 2) +
                         Math.pow(z, 2)) - SensorManager.GRAVITY_EARTH;
 
-                if (acceleration > 3f) {
-
-                    Log.i("loadFile", "Acceleration is: " + acceleration);
-
-                    try {
-                        shakeThreshold = Float.parseFloat(AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt"));
-                    } catch (Exception ex) {
-                        AndroidReadWrite.saveFile(getApplicationContext(), "settings.txt", 10.2f + "");
-                        shakeThreshold = 10.2f;
-                        ex.getMessage();
-                    }
-
-                    if (acceleration > shakeThreshold) {
-                        lastShakeTime = curTime;
-                        if (!isFlashlightOn) {
-                            torchToggle("on");
-                            isFlashlightOn = true;
-                        } else {
-                            torchToggle("off");
-                            isFlashlightOn = false;
-                        }
+                if (acceleration > shakeThreshold) {
+                    lastShakeTime = curTime;
+                    if (!isFlashlightOn) {
+                        torchToggle("on");
+                        isFlashlightOn = true;
+                    } else {
+                        torchToggle("off");
+                        isFlashlightOn = false;
                     }
                 }
             }
