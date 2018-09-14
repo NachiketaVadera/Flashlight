@@ -2,7 +2,6 @@ package android.nachiketa.flashlight;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
@@ -13,11 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     // TODO : Optimize code
 
-    RelativeLayout relativeLayout = null;
+    Global global;
     boolean isTorchOn = false;
 
     @Override
@@ -25,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(this, FlashlightShakeToggle.class));
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relLayMain);
 
-        relativeLayout = (RelativeLayout) findViewById(R.id.relLayMain);
+        global = new Global();
+
+        global.setRelativeLayout(Objects.requireNonNull(relativeLayout));
+
+        startService(new Intent(this, FlashlightShakeToggle.class));
     }
 
     @Override
@@ -60,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
                     if (command.equals("on")) {
                         camManager.setTorchMode(cameraId, true);   // Turn ON
                         isTorchOn = true;
-                        changeBackground();
+                        global.changeBackground(true);
                     } else {
                         camManager.setTorchMode(cameraId, false);  // Turn OFF
                         isTorchOn = false;
-                        changeBackground();
+                        global.changeBackground(false);
                     }
                 }
             } catch (CameraAccessException e) {
@@ -72,15 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void changeBackground() {
-        if (isTorchOn) {
-            relativeLayout.setBackgroundColor(Color.WHITE);
-        } else {
-            relativeLayout.setBackgroundColor(Color.BLACK);
-        }
-    }
-
 
     @Override
     protected void onDestroy() {

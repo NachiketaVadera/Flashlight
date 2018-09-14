@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Objects;
+
 public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     SeekBar seekBar = null;
@@ -21,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSee
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        String progress = AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt");
+        String progress = Global.loadFile(getApplicationContext(), "settings.txt");
 
         seekBar = (SeekBar) findViewById(R.id.skbThreshold);
         seekBar.setProgress((int) Float.parseFloat(Objects.requireNonNull(progress).replace("f","")));
@@ -37,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSee
     }
 
     public void saveSettings(View view) {
-        if (AndroidReadWrite.saveFile(getApplicationContext(), "settings.txt", seekBar.getProgress() + "")) {
+        if (Global.saveFile(getApplicationContext(), "settings.txt", seekBar.getProgress() + "")) {
             Log.i("Flashlight_saveSettings", "File Saved Successfully");
             startActivity(new Intent(this, MainActivity.class));
             finish();

@@ -7,9 +7,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
 
@@ -20,10 +17,7 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
     public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     private long lastShakeTime = 0;
     private boolean isFlashlightOn = false;
-
-    public FlashlightShakeToggle() {
-
-    }
+    private Float shakeThreshold;
 
     @Override
     public void onCreate() {
@@ -34,6 +28,14 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
             Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             sensorManager.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         }
+
+        try {
+            shakeThreshold = Float.parseFloat(Global.loadFile(getApplicationContext(), "settings.txt"));
+        } catch (Exception ex) {
+            Global.saveFile(getApplicationContext(), "settings.txt", String.valueOf(10.2f));
+            shakeThreshold = 10.2f;
+            ex.getMessage();
+        }
     }
 
     @Override
@@ -43,16 +45,11 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Float shakeThreshold;
-        try {
-            shakeThreshold = Float.parseFloat(AndroidReadWrite.loadFile(getApplicationContext(), "settings.txt"));
-        } catch (Exception ex) {
-            AndroidReadWrite.saveFile(getApplicationContext(), "settings.txt", 10.2f + "");
-            shakeThreshold = 10.2f;
-            ex.getMessage();
-        }
+
+        Global global = new Global();
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+
             long curTime = System.currentTimeMillis();
             if ((curTime - lastShakeTime) > MIN_TIME_BETWEEN_SHAKES) {
 
@@ -67,38 +64,13 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
                 if (acceleration > shakeThreshold) {
                     lastShakeTime = curTime;
                     if (!isFlashlightOn) {
-                        torchToggle("on");
-                        isFlashlightOn = true;
+                        isFlashlightOn = global.torchToggle("on", this);
+                        global.changeBackground(true);
                     } else {
-                        torchToggle("off");
-                        isFlashlightOn = false;
+                        isFlashlightOn = global.torchToggle("off", this);
+                        global.changeBackground(false);
                     }
                 }
-            }
-        }
-    }
-
-    private void torchToggle(String command) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            String cameraId = null; // Usually back camera is at 0 position.
-            try {
-                if (camManager != null) {
-                    cameraId = camManager.getCameraIdList()[0];
-                }
-                if (camManager != null) {
-                    if (command.equals("on")) {
-                        camManager.setTorchMode(cameraId, true);   // Turn ON
-                        vibrator.vibrate(500);
-                        isFlashlightOn = true;
-                    } else {
-                        camManager.setTorchMode(cameraId, false);  // Turn OFF
-                        vibrator.vibrate(500);
-                        isFlashlightOn = false;
-                    }
-                }
-            } catch (CameraAccessException e) {
-                e.getMessage();
             }
         }
     }
