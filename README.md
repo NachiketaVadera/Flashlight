@@ -1,5 +1,10 @@
 # Flashlight
 
+[![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/badge.svg)](https://nachiketavadera.github.io/Flashlight)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://github.com/NachiketaVadera/Flashlight)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ## Summary
 
 The base of this project is LED provided along with the Camera in a typical Android smart phone. After seeing that Play Store has a number of apps that ask for unnecessary permissions, I decided to create an app that toggles the LED without asking for any type of permission. This app also implements a service that detects when the device is shook (used to toggle the flashlight). 
@@ -9,13 +14,13 @@ As of June 24th of 2018, Flashlight is licensed under Apache License version 2.0
 ## Downloads
 
 Latest apk:
-[Flashlight.apk](https://github.com/NachiketaVadera/Flashlight/releases/download/v1.4/Flashlight-v1.4.apk)
+[Flashlight.apk](https://github.com/NachiketaVadera/Flashlight/releases/download/v1.5/Flashlight-v1.5.apk)
 
 Source Code (zip):
-[Flashlight.zip](https://github.com/NachiketaVadera/Flashlight/archive/v1.4.zip)
+[Flashlight.zip](https://github.com/NachiketaVadera/Flashlight/archive/v1.5.zip)
 
 Source Code (tar.gz):
-[Flashlight.tar.gz](https://github.com/NachiketaVadera/Flashlight/archive/v1.4.tar.gz)
+[Flashlight.tar.gz](https://github.com/NachiketaVadera/Flashlight/archive/v1.5.tar.gz)
 
 ## Contributors
 
