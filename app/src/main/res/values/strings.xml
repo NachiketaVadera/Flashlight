@@ -6,4 +6,6 @@
     <string name="tv_text_heading_Settings">Settings</string>
     <string name="tv_text_explaination_st">How hard to shake to switch flashlight on?</string>
     <string name="iv_contentDisc">Gif Image to show shake motion</string>
+    <string name="switch_on_text">Switch On</string>
+    <string name="switch_off_text">Switch Off</string>
 </resources>

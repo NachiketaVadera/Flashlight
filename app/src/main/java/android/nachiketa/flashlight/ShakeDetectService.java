@@ -9,15 +9,19 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.support.annotation.Nullable;
 
-public class FlashlightShakeToggle extends Service implements SensorEventListener {
+public class ShakeDetectService extends Service implements SensorEventListener {
 
+    public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     SensorManager sensorManager = null;
     Vibrator vibrator = null;
-    public static final int MIN_TIME_BETWEEN_SHAKES = 1000;
     private long lastShakeTime = 0;
     private boolean isFlashlightOn = false;
     private Float shakeThreshold;
+
+    public ShakeDetectService() {
+    }
 
     @Override
     public void onCreate() {
@@ -38,9 +42,10 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
         }
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
 
     @Override
@@ -65,10 +70,8 @@ public class FlashlightShakeToggle extends Service implements SensorEventListene
                     lastShakeTime = curTime;
                     if (!isFlashlightOn) {
                         isFlashlightOn = global.torchToggle("on", this);
-                        global.changeBackground(true);
                     } else {
                         isFlashlightOn = global.torchToggle("off", this);
-                        global.changeBackground(false);
                     }
                 }
             }

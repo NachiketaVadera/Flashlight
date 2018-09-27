@@ -18,13 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity" />
 
         <service
-            android:name=".FlashlightShakeToggle"
-            android:enabled="true"
-            android:exported="true" />
-
-        <activity android:name=".SettingsActivity"></activity>
+            android:name=".ShakeDetectService"
+            android:enabled="true" />
     </application>
 
 </manifest>

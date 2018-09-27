@@ -1,13 +1,11 @@
 package android.nachiketa.flashlight;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.util.Log;
-import android.widget.RelativeLayout;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -19,23 +17,6 @@ import java.io.Writer;
 import java.util.Objects;
 
 public class Global {
-
-    // TODO : SOLVE BACKGROUND COLOR ERROR - NULL POINTER EXCEPTION (TRY TO PASS ACTIVITY AS ARGUMENT)
-
-
-    private RelativeLayout layout;
-
-    public void setRelativeLayout(RelativeLayout relativeLayout) {
-        layout = relativeLayout;
-    }
-
-    public void changeBackground(boolean isTorchOn) {
-        if (isTorchOn) {
-            Objects.requireNonNull(layout).setBackgroundColor(Color.WHITE);
-        } else {
-            Objects.requireNonNull(layout).setBackgroundColor(Color.BLACK);
-        }
-    }
 
     public boolean torchToggle(String command, Context context) {
 
@@ -52,13 +33,11 @@ public class Global {
                     if (command.equals("on")) {
                         camManager.setTorchMode(cameraId, true);   // Turn ON
                         Objects.requireNonNull(vibrator).vibrate(500);
-                        changeBackground(true);
                         return true;
 
                     } else {
                         camManager.setTorchMode(cameraId, false);  // Turn OFF
                         Objects.requireNonNull(vibrator).vibrate(500);
-                        changeBackground(false);
                         return false;
                     }
                 }
