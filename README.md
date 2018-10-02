@@ -24,7 +24,8 @@ Source Code (tar.gz):
 
 ## Contributors
 
-* RamusisTrenksmas (https://github.com/RamusisTrenksmas)
+* Code Optimization : RamusisTrenksmas [RamusisTrenksmas](https://github.com/RamusisTrenksmas)
+* Logo and Images : Dee-y [Dee-y](https://github.com/dee-y)
 
 ## Code
 
