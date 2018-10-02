@@ -1,5 +1,7 @@
 # Flashlight
 
+![Project Logo](https://raw.githubusercontent.com/NachiketaVadera/Flashlight/master/images/gif/gif1.gif)
+
 [![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/badge.svg)](https://nachiketavadera.github.io/Flashlight)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://github.com/NachiketaVadera/Flashlight)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
