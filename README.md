@@ -42,7 +42,7 @@ Declare global variables:
     private boolean isFlashlightOn = false;
 ```
 
-Initiaize sensorManager:
+Initialize sensorManager:
 
 ```java
     sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
