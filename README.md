@@ -2,7 +2,7 @@
 
 ![Project Logo](https://raw.githubusercontent.com/NachiketaVadera/Flashlight/master/images/gif/gif1.gif)
 
-[![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/badge.svg)](https://nachiketavadera.github.io/Flashlight)
+
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://github.com/NachiketaVadera/Flashlight)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -125,6 +125,4 @@ Any help, including feedback, is highly appriciated. I have just started out wit
 
 Once staretd, an app can never be completely finished. 
 
-1. Provide users option to toggle the service ON/OFF.
-2. Optimize code.
-3. Make flashlight toggle easier.
+1. Revamp the project and make it better.
